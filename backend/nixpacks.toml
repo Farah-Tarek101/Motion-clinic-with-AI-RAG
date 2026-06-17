@@ -1,0 +1,21 @@
+[phases.setup]
+nixPkgs = ["python3", "nodejs", "gnumake", "gcc"]
+
+[phases.install]
+cmds = [
+  "pip install --upgrade pip",
+  "pip install -r requirements.txt",
+  "npm install",
+  "chmod +x start.sh"
+]
+
+[phases.build]
+cmds = [
+  "python3 -c 'import sys; print(\"Python version:\", sys.version)'",
+  "python3 -c 'import torch; print(\"PyTorch version:\", torch.__version__)'",
+  "python3 -c 'import transformers; print(\"Transformers version:\", transformers.__version__)'",
+  "echo 'Build completed successfully with Python3'"
+]
+
+[start]
+cmd = "./start.sh" 
